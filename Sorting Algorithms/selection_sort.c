@@ -27,6 +27,16 @@ void selectionSort(int arr[], int n)
     }
 }
 
+void selectionSort2(int arr[], int n){
+    int x, y, min;
+
+    for(x = 0; x < n; x++){
+        min = x;
+
+        for(y = )
+    }
+}
+
 /* Function to print an array */
 void printArray(int arr[], int size)
 {
