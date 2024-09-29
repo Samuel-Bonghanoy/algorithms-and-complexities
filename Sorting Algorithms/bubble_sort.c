@@ -44,6 +44,19 @@ void bubbleSort2(int arr[], int n) {
         printf("%d ", arr[i]);
 }
 
+
+void bubbleSort3(int arr[], int size){
+    int x, y;
+
+    for(x = 0; x < size; x++){
+        for(y = 0; y < size - x; y++){
+            if(arr[y] > arr[y+1]){
+                swap(&arr[y], &arr[y+1]);
+            }
+        }
+    }
+}
+
 // Function to print an array
 void printArray(int arr[], int size)
 {
