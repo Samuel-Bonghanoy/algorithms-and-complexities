@@ -54,9 +54,22 @@ void bubbleSort3(int arr[], int size){
             swap(&arr[y], &arr[y + 1]);
         }
     }
-  
    }
-     for (int i = 0; i < size; i++)
+}
+
+void bubbleSort4(int arr[], int size){
+    int x,y;
+
+    for(x = 0; x < size - 1; x++){
+        for(y = 0 ; y < size - x - 1; y++){
+            if(arr[y] > arr[y+1]){
+                swap(&arr[y], &arr[y+1]);
+            }
+        }
+    }
+
+      int i;
+    for (i = 0; i < size; i++)
         printf("%d ", arr[i]);
 }
 
@@ -74,7 +87,7 @@ int main()
     int arr[] = { 64, 34, 25, 12, 22, 11, 90 };
     int n = sizeof(arr) / sizeof(arr[0]);
     printf("Sorted array: \n");
-    bubbleSort3(arr, n);
+    bubbleSort4(arr, n);
     // printArray(arr, n);
     return 0;
 }

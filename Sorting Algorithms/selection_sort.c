@@ -43,6 +43,22 @@ void selectionSort2(int arr[], int n){
 
 }
 
+void selectionSort3(int arr[], int size){
+    int x,y,min;
+
+    for(x = 0; x < size; x++){
+        min = x;
+
+        for(y = x; y < size; y++){
+            if(arr[y] < arr[min]){
+                min = y;
+            }
+        }
+
+        if(min != x) swap(&arr[min], &arr[x]);
+    }
+}
+
 /* Function to print an array */
 void printArray(int arr[], int size)
 {
@@ -57,7 +73,7 @@ int main()
 {
     int arr[] = {64, 25, 12, 22, 11};
     int n = sizeof(arr)/sizeof(arr[0]);
-    selectionSort2(arr, n);
+    selectionSort3(arr, n);
     printf("Sorted array2: \n");
     printArray(arr, n);
     return 0;

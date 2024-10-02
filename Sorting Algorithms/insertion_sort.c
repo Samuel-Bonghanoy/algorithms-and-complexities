@@ -64,9 +64,22 @@ void insertionSort3(int arr[], int size){
             }
         }
     }
- for (int i = 0; i < size; ++i)
+
+}
+
+void insertionSort4(int arr[], int size){
+    int x,y;
+
+    for(x = 0; x < size; x++){
+        for(y = x; y > 0; y--){
+            if(arr[y] < arr[y-1]){
+                swap(&arr[y], &arr[y-1]);
+            }
+        }
+    }
+
+       for (int i = 0; i < size; ++i)
         printf("%d ", arr[i]);
-    printf("\n");
 }
 
 
@@ -77,7 +90,7 @@ int main()
     int n = sizeof(arr) / sizeof(arr[0]);
     printf("%d\n", n);
 
-    insertionSort3(arr, n);
+    insertionSort4(arr, n);
     // printArray(arr, n);
 
     return 0;

@@ -78,6 +78,30 @@ void tournamentSort2(int arr[], int size){
   }
 }
 
+void tournamentSort3(int *array, int size){
+  int *winnerTree = (int*)malloc(sizeof(int) * (2 * size - 1));
+  int heapSize = 2 * size - 1;
+  int startNdx = heapSize - 1;
+  int x, y;
+  int P, LC, RC;
+  for(x = size - 1, y = startNdx; x > -1;){
+    winnerTree[y--] = array[x--];
+  }
+  for(x = 0; x < size; x++){
+    for(P = (startNdx - 1) / 2; P > -1; ){
+      LC = 2 * P + 1;
+      RC = LC + 1;
+
+      LC = (LC < heapSize - size) ?  winnerTree[LC] : LC;
+      RC = (RC < heapSize - size) ?  winnerTree[RC] : RC;
+      winnerTree[P] = (winnerTree[LC] < winnerTree[RC])? LC : RC;
+      P = (x > 0 && P > 0) ? (P - 1) / 2 : P - 1;
+    }
+    startNdx = winnerTree[0];
+    array[x] = winnerTree[startNdx];
+    winnerTree[startNdx] = INF;
+  }
+}
 
 
 

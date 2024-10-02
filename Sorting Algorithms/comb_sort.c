@@ -58,13 +58,25 @@ void combsort2(int arr[], int size)
   }
 }
 
+void combSort4(int arr[], int size){
+  int gap,x;
+
+  for(gap = size/1.3; gap > 0; gap/=1.3){
+    for(x = 0; x < size - gap; x++){
+      if(arr[x] > arr[x+gap]){
+        swap(&arr[x], &arr[x+gap]);
+      }
+    }
+  }
+}
+
 
 int main ()
 {
     int n, i;
     int arr[] = { 12, 11, 13, 5, 6, 1 };
     int size = sizeof(arr) / sizeof(arr[0]);
-    combsort2(arr, size);
+    combSort4(arr, size);
     printf("Sorted list:\n");        // Display the sorted array
     for(i = 0;i < size;i++)
     {

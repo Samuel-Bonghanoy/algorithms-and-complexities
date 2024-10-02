@@ -103,6 +103,22 @@ int shellSort3(int arr[], int size){
     }
 }
 
+int shellSort4(int arr[], int size){
+    int x,y,gap, temp;
+
+    for(gap = size/2; gap > 0; gap/=2){
+        for(x = gap; x < size; x++){
+            temp = arr[x];
+
+            for(y = x; y >= gap && arr[y - gap] > temp; y-= gap){
+                arr[y] = arr[y-gap];
+            }
+
+            arr[y] = temp;
+        }
+    }
+}
+
 
 // Driver method
 int main()
@@ -111,7 +127,7 @@ int main()
     int n = sizeof(arr) / sizeof(arr[0]);
     printf("%d\n", n);
 
-    shellSort3(arr, n);
+    shellSort4(arr, n);
     printArray(arr, n);
 
     return 0;
