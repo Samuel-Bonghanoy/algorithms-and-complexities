@@ -49,15 +49,13 @@ void combsort2(int arr[], int size)
 {
    int x, gap;
 
-   for(gap = size / 1.3; gap >= 1; gap /= 1.3){
-
+  for(gap = size/1.3; gap >= 1; gap/=1.3){
     for(x = 0; x < size - gap; x++){
-      if(arr[x] > arr[x + gap]){
+      if(arr[x] > arr[x+gap]){
         swap(&arr[x], &arr[x+gap]);
       }
     }
-   }
-
+  }
 }
 
 

@@ -51,34 +51,68 @@ void insertionSort2(int arr[], int n)
     printf("\n");
 }
 
-
-void insertionSort3(int arr[], int size){
-    int x,y,temp;
-
-    for(x = 0; x < size; x++){
-        for(y = x; y > 0; y--){
-            if(arr[y] < arr[y-1]){
-                 temp = arr[y - 1];
-                arr[y - 1] = arr[y];
-                arr[y] = temp;
-            }
+int shellSort(int arr[], int n)
+{
+    int i,j,gap;
+  
+    for (gap = n/2; gap > 0; gap /= 2)
+    {
+        for (i = gap; i < n; i += 1)
+        {
+            int temp = arr[i];
+                 
+            for (j = i; j >= gap && arr[j - gap] > temp; j -= gap)
+                arr[j] = arr[j - gap];
+           
+            arr[j] = temp;
         }
     }
- for (int i = 0; i < size; ++i)
-        printf("%d ", arr[i]);
-    printf("\n");
+    return 0;
+}
+
+
+int shellSort2(int arr[], int size){
+    int x,y,gap,temp;
+
+    for(gap = size/2; gap > 0; gap /=2){
+        for(x = gap; x < size; x++){
+            temp = arr[x];
+
+            for(y = x; y >= gap && arr[y - gap] > temp; y -= gap){
+                arr[y] = arr[y - gap];
+            }
+
+            arr[y] = temp;
+        }
+    }
+}
+
+int shellSort3(int arr[], int size){
+    int x,y,gap,temp;
+
+    for(gap = size/2; gap > 0; gap/=2){
+        for(x = gap; x < size; x++){
+            temp = arr[x];
+
+            for(y = x; y >= gap && arr[y - gap] > temp; y-= gap){
+                arr[y] = arr[y - gap];
+            }
+
+            arr[y] = temp;
+        }
+    }
 }
 
 
 // Driver method
 int main()
 {
-    int arr[] = { 12, 11, 13, 5, 6, 1 };
+    int arr[] = { 5, 11, 12, 5, 6, 1 };
     int n = sizeof(arr) / sizeof(arr[0]);
     printf("%d\n", n);
 
-    insertionSort3(arr, n);
-    // printArray(arr, n);
+    shellSort3(arr, n);
+    printArray(arr, n);
 
     return 0;
 }

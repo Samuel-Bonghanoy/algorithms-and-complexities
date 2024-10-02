@@ -31,16 +31,14 @@ void selectionSort(int arr[], int n)
 void selectionSort2(int arr[], int n){
     int x, y, min;
 
-    // int *output = (int *)malloc(n * sizeof(int));
     for(x = 0; x < n; x++){
         min = x;
-
         for(y = x; y < n; y++){
             if(arr[y] < arr[min]){
-               min = y;
+                min = y;
             }
         }
-       if(min != x ) swap(&arr[x], &arr[min]);
+        if(min != x) swap(&arr[min], &arr[x]);
     }
 
 }
