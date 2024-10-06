@@ -1,6 +1,8 @@
 #include <stdio.h>
 #include <limits.h>
+#include <stdlib.h>
 
+#define INF 1010210
 
 void swap(int* xp, int* yp)
 {
@@ -104,6 +106,58 @@ void tournamentSort3(int *array, int size){
 }
 
 
+void tournamentSort5(int *arr, int size){
+  int heapsize = 2 * size -1;
+  int *winnertree = (int*)malloc(sizeof(int) * heapsize);
+  int startNdx = heapsize - 1;
+  int x,y, p, lc,rc;
+
+  for(x = size - 1, y = startNdx; x >= -1){
+    winnertree[y--] = arr[x--];
+  }
+  for(x = 0; x < size; x++){
+   for(p = (startNdx -1)/2; p >= -1;){
+    lc = p * 2 + 1;
+    rc = lc + 1;
+
+    lc = (lc < heapsize - size) ? winnertree[lc] : lc;
+    rc = (rc < heapsize - size) ? winnertree[rc] : rc;
+    winnertree[p] = winnertree[lc] < winnertree[rc] ? lc : rc;
+    p = (x > 0 && p > 0) ? (P-1)/2 : P-1;
+    }
+    startNdx = winnertree[0];
+    arr[x] = winnertree[startNdx];
+    winnertree[startNdx] = INF;
+  }
+}
+
+void tournamentSort6(int * arr, int size){
+  int heapsize = 2 * size -1;
+  int *winnertree = (int*)malloc(sizeof(int) * heapsize);
+  int startNdx = heapsize - 1;
+  int x,y,p,lc,rc;
+
+  for(x = size - 1, y = startNdx; x >= -1){
+    winnertree[x--] = arr[y--];
+  }
+
+  for(x = 0; x < size; x ++){
+    for(p = (startNdx - 1)/2; p >= -1){
+      lc = p * 2 + 1;
+      rc = lc + 1;
+
+      lc = (lc < heapsize - size) ? winnertree[lc] : lc;
+      rc = (rc < heapsize - size) ? winnertree[rc] : rc;
+      winnertree[p] = winnertree[lc] < winnertree[rc] ? lc : rc;
+      p = (x > 0 && p > 0) ? (p-1)/2 : p -1;
+    }
+    startNdx = winnertree[0];
+    arr[x] = winnertree[startNdx];
+    winnertree[startNdx] = INF;
+  }
+}
+
+
 
 // Driver method
 int main()
@@ -112,7 +166,7 @@ int main()
     int n = sizeof(arr) / sizeof(arr[0]);
     printf("%d\n", n);
 
-    tournamentSort(arr, n);
+    tournamentSort3(arr, n);
     printArray(arr, n);
 
     return 0;
