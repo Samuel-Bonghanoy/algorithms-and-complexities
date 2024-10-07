@@ -6,6 +6,7 @@ typedef struct {
  int elem[MAX];
  int count;
 } ARRAY;
+
 void mergeSort(ARRAY *arr, int low, int high) {
  if (low >= high) {
  return;
